@@ -29,6 +29,9 @@ public class User {
         )
     private Set<Team> userTeams = new HashSet<>();
 
+    @OneToMany(mappedBy = "user",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Set<Task> tasks;
+
     public User(){}
     public User(int id, String name, String username, String password) {
         this.id = id;
@@ -75,5 +78,13 @@ public class User {
 
     public void setUserTeams(Set<Team> userTeams) {
         this.userTeams = userTeams;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 }

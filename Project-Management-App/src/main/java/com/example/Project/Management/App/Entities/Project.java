@@ -2,6 +2,7 @@ package com.example.Project.Management.App.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "project")
@@ -22,6 +23,9 @@ public class Project {
     @JoinColumn(name = "teamid", nullable = false)
     @JsonIgnore
     private Team team;
+
+    @OneToMany(mappedBy = "project", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<Task> tasks;
 
     public Project(){}
     public Project(int id, String name, String description, Team team) {
@@ -61,5 +65,13 @@ public class Project {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 }
