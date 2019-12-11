@@ -1,4 +1,5 @@
 package com.example.Project.Management.App.Controller;
+import com.example.Project.Management.App.Dto.TaskDto;
 import com.example.Project.Management.App.Dto.UserDto;
 import com.example.Project.Management.App.Entities.Project;
 import com.example.Project.Management.App.Entities.Task;
@@ -18,18 +19,9 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     UserService userService;
-    @Autowired
-    ModelMapper modelMapper;
     @GetMapping("user")
-    public List<UserDto> getUsers(){
-        List<User> userList=userService.getUsers();
-        return userList.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
-    }
-    private UserDto convertToDto(User user) {
-        UserDto userDto = modelMapper.map(user, UserDto.class);
-        return userDto;
+    public List<UserDto> getUsers() {
+    return userService.getUsers();
     }
     @GetMapping("project")
     public List<Project> getAllProjects(){
@@ -72,5 +64,10 @@ public class UserController {
     public Task saveTask(@RequestBody TaskPojo taskPojo)throws Exception
     {
         return userService.saveTask(taskPojo);
+    }
+    @GetMapping("task/like/{str}")
+    public List<Task> getLikeTasks(@PathVariable String str)
+    {
+        return userService.getLikeTasks(str);
     }
 }

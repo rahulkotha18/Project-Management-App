@@ -1,12 +1,20 @@
 package com.example.Project.Management.App.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "task")
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class Task {
 
     @Id
@@ -30,64 +38,6 @@ public class Task {
     @JoinColumn(name = "userid", nullable = false)
     @JsonIgnore
     private User user;
-
-    public Task(){}
-    public Task(int id, String name, String description, Date duedate, Project project, User user) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.duedate = duedate;
-        this.project = project;
-        this.user = user;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getDuedate() {
-        return duedate;
-    }
-
-    public void setDuedate(Date duedate) {
-        this.duedate = duedate;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     @Override
     public String toString() {

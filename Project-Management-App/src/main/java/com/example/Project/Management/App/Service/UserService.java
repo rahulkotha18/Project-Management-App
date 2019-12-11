@@ -1,14 +1,14 @@
 package com.example.Project.Management.App.Service;
 
+import com.example.Project.Management.App.Dto.TaskDto;
+import com.example.Project.Management.App.Dto.UserDto;
 import com.example.Project.Management.App.Entities.Project;
 import com.example.Project.Management.App.Entities.Task;
 import com.example.Project.Management.App.Entities.Team;
 import com.example.Project.Management.App.Entities.User;
 import com.example.Project.Management.App.Pojo.TaskPojo;
-import com.example.Project.Management.App.Repository.ProjectRepository;
-import com.example.Project.Management.App.Repository.TaskRepository;
-import com.example.Project.Management.App.Repository.TeamRepository;
-import com.example.Project.Management.App.Repository.UserRepository;
+import com.example.Project.Management.App.Repository.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -27,9 +28,10 @@ public class UserService {
     TaskRepository taskRepository;
     @Autowired
     TeamRepository teamRepository;
-    public List<User> getUsers(){
-        return userRepository.findAll();
-    }
+    @Autowired
+    ModelMapper modelMapper;
+    @Autowired
+    TodoRepository todoRepository;
     public List<Project> getProjects(){
         return projectRepository.findAll();
     }
@@ -67,6 +69,16 @@ public class UserService {
         User user=userRepository.findById(userid).get();
         return user.getUserTeams();
     }
+    public List<UserDto> getUsers(){
+        List<User> userList=userRepository.findAll();
+        return userList.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+    private UserDto convertToDto(User user) {
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+        return userDto;
+    }
     public Task saveTask(TaskPojo taskPojo) throws Exception
     {
         System.out.println(taskPojo.toString());
@@ -82,5 +94,9 @@ public class UserService {
         System.out.println(task.toString());
         taskRepository.save(task);
         return task;
+    }
+    public List<Task> getLikeTasks(String  searchTerm)
+    {
+        return todoRepository.findBySearchTermNative(searchTerm);
     }
 }
