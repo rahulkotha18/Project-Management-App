@@ -48,6 +48,7 @@ const StyledMenuItem = withStyles(theme => ({
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   let addIcon=<AddCircleIcon color="secondary"/>
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -69,10 +70,18 @@ export default function CustomizedMenus() {
       </Button> */}
       <IconButton children={addIcon}
       onClick={handleClick}
-      style={{ backgroundColor: 'transparent' }} 
+      style={{ backgroundColor: 'transparent',
+      // background: "linearGradient(to top right,#ff1f35, #ff4053 35%, #c99701)",
+      // backgroundColor: "rgba(0, 0, 0, 0)",
+      // backgroundPositionX:"0%",
+      // backgroundPositionY: "0%",
+      // backgroundRepeat: "repeat",
+      // backgroundAttachment: "scroll", 
+    }} 
       disableRipple="true"
       >
         </IconButton>
+
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}

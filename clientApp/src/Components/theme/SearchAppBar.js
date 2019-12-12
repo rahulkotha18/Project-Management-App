@@ -16,14 +16,15 @@ import HelpMenus from './help';
 import UserMenu from './usermenu';
 import CustomButton from '../Atoms/CustomButton';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import img from '../Atoms/1.jpg'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
   avatar:{
     background:'#4caf50',
-      width: 24,
-      height: 24,
+     width: 24,
+     height: 24,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -35,6 +36,7 @@ const useStyles = makeStyles(theme => ({
   
   title: {
     flexGrow: 1,
+    fontSize:'20px',
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -105,11 +107,12 @@ export default function SearchAppBar() {
   const classes = useStyles();
   let addIcon=<AddCircleIcon color="secondary"/>
   let helpIcon=<HelpOutlineOutlinedIcon/>
-  let userIcon=<Avatar variant="rounded" className={classes.avatar} src="/home/user/Pictures/rahul.png"/>
+  let userIcon=<Avatar alt="r" className={classes.avatar} src={img}/>
+  // let userIcon=<Avatar variant="rounded" className={classes.avatar}>r</Avatar>
   return (
     <MuiThemeProvider theme={theme1}>
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" elevation="none">
         <Toolbar>
           <IconButton
             edge="start"
@@ -127,6 +130,7 @@ export default function SearchAppBar() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
+
             <InputBase
               variant="rounded"
               squared="false"
@@ -137,6 +141,7 @@ export default function SearchAppBar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
+
           </div>
           <div>
             <CustomizedMenus/>

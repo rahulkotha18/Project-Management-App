@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchAppBar from './Components/theme/SearchAppBar';
+import PlaceSearch from './Components/Api/search';
 // import clsx from 'clsx';
 // import { makeStyles, useTheme } from '@material-ui/core/styles';
 // import Drawer from '@material-ui/core/Drawer';
@@ -166,7 +167,8 @@ import SearchAppBar from './Components/theme/SearchAppBar';
 const App=()=>{
   return(
     <div>
-      <SearchAppBar/>
+      {/* <SearchAppBar/> */}
+      <PlaceSearch/>
     </div>
   );
 }

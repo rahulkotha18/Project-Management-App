@@ -7,12 +7,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CheckIcon from '@material-ui/icons/Check';
 import Avatar from '@material-ui/core/Avatar';
+
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
-  },
-  green:{
-    background:'#4caf50'
   },
 })(props => (
   <Menu
@@ -43,7 +41,6 @@ const StyledMenuItem = withStyles(theme => ({
 
 export default function UserMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  let userIcon=<Avatar variant="rounded" >rp</Avatar>
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
