@@ -13,6 +13,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Avatar from '@material-ui/core/Avatar';
 import CustomizedMenus from './menu';
 import HelpMenus from './help';
+import UserMenu from './usermenu';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -128,7 +129,7 @@ export default function SearchAppBar() {
           <Button variant="contained"color="secondary">Upgrade</Button>
           </div>
           <div>
-              <IconButton children={userIcon}/>
+              <UserMenu name={userIcon}/>
           </div>
           
         </Toolbar>
