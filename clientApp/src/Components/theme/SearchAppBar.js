@@ -14,13 +14,16 @@ import Avatar from '@material-ui/core/Avatar';
 import CustomizedMenus from './menu';
 import HelpMenus from './help';
 import UserMenu from './usermenu';
-
+import CustomButton from '../Atoms/CustomButton';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  green:{
-    background:'#4caf50'
+  avatar:{
+    background:'#4caf50',
+      width: 24,
+      height: 24,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -85,12 +88,26 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+
+
 export default function SearchAppBar() {
+  const theme1 = createMuiTheme({
+    overrides: {
+      MuiSelect: {
+        select: {
+          "&:focus": {
+            background: "$labelcolor"
+          }
+        }
+      }
+    }
+  });
   const classes = useStyles();
   let addIcon=<AddCircleIcon color="secondary"/>
   let helpIcon=<HelpOutlineOutlinedIcon/>
-  let userIcon=<Avatar variant="rounded" className={classes.green}>rp</Avatar>
+  let userIcon=<Avatar variant="rounded" className={classes.avatar} src="/home/user/Pictures/rahul.png"/>
   return (
+    <MuiThemeProvider theme={theme1}>
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
@@ -111,7 +128,9 @@ export default function SearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              variant="rounded"
+              squared="false"
+              placeholder="Search"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -126,7 +145,7 @@ export default function SearchAppBar() {
               <HelpMenus/>
           </div>
           <div>
-          <Button variant="contained"color="secondary">Upgrade</Button>
+          <CustomButton type="warning" name="upgrade"/>
           </div>
           <div>
               <UserMenu name={userIcon}/>
@@ -135,6 +154,7 @@ export default function SearchAppBar() {
         </Toolbar>
       </AppBar>
     </div>
+    </MuiThemeProvider>
   );
 }
 

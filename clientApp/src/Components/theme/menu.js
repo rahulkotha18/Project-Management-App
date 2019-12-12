@@ -11,11 +11,12 @@ import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import GroupOutlinedIcon from '@material-ui/icons/GroupOutlined';
 import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
+import { IconButton } from '@material-ui/core';
 
 
 const StyledMenu = withStyles({
   paper: {
-    border: '1px solid #d3d4d5',
+  
   },
 })(props => (
   <Menu
@@ -57,13 +58,21 @@ export default function CustomizedMenus() {
 
   return (
     <div>
-      <Button
+      {/* <Button
         aria-controls="customized-menu"
         aria-haspopup="true"
         onClick={handleClick}
-      >
+        style={{ backgroundColor: 'transparent' }} 
+        disableRipple="true"
+        >
         {addIcon}
-      </Button>
+      </Button> */}
+      <IconButton children={addIcon}
+      onClick={handleClick}
+      style={{ backgroundColor: 'transparent' }} 
+      disableRipple="true"
+      >
+        </IconButton>
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}

@@ -53,6 +53,8 @@ export default function HelpMenus() {
         aria-controls="customized-menu"
         aria-haspopup="true"
         onClick={handleClick}
+        style={{ backgroundColor: 'transparent' }}
+        disableRipple="true"
       >
         {helpIcon}
       </Button>

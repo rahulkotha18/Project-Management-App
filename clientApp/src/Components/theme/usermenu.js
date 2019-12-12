@@ -58,6 +58,8 @@ export default function UserMenu(props) {
         aria-controls="customized-menu"
         aria-haspopup="true"
         onClick={handleClick}
+        style={{ backgroundColor: 'transparent' }}
+        disableRipple="true"
       >
         {props.name}
       </Button>
